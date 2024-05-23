@@ -1,0 +1,170 @@
+Folder: ../../vedicsociety/brucheion-pro/auth - File: auth_handler.go - Function: GetSignUpVerification - Comment: handler for endering user's email verification click
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: auth_handler.go - Function: PostSignUpVerification - Comment: receive user's data after clarification
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: BeginAuthHandler - Comment: BeginAuthHandler is a convenience handler for starting the authentication process.
+It expects to be able to get the name of the provider from the query parameters
+as either "provider" or ":provider".
+BeginAuthHandler will redirect the user to the appropriate authentication end-point
+for the requested provider.
+See https://github.com/markbates/goth/examples/main.go to see this in action.
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: SetState - Comment: SetState sets the state string associated with the given request.
+If no state string is associated with the request, one will be generated.
+This state is sent to the provider and can be retrieved during the
+callback.
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: GetState - Comment: GetState gets the state returned by the provider during the callback.
+This is used to prevent CSRF attacks, see
+http://tools.ietf.org/html/rfc6749#section-10.12
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: GetAuthURL - Comment: GetAuthURL starts the authentication process with the requested provided.
+It will return a URL that should be used to send users to.
+It expects to be able to get the name of the provider from the query parameters
+as either "provider" or ":provider".
+I would recommend using the BeginAuthHandler instead of doing all of these steps
+yourself, but that's entirely up to you.
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: validateState - Comment: validateState ensures that the state token param from the original
+AuthURL matches the one included in the current (callback) request.
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: oauth_helper.go - Function: CompleteUserAuth - Comment: CompleteUserAuth does what it says on the tin. It completes the authentication
+process and fetches all the basic information about the user from the provider.
+It expects to be able to get the name of the provider from the query parameters
+as either "provider" or ":provider".
+See https://github.com/markbates/goth/examples/main.go to see this in action.
+
+Folder: ../../vedicsociety/brucheion-pro/auth - File: signin_db.go - Function: SignInGothUser - Comment: following oauth authentication process, we arise this procedure after get user's credentials from oauth provider
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: SplitCTS - Comment: SplitCTS splits a CTS URN string in its stem and the passage reference
+and returns it as a CTSURN
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: SplitCITE - Comment: SplitCITE splits a Cite URN string in its stem and the passage reference
+and returns it as a Cite2Urn
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsRange - Comment: IsRange returns a boolean whether a CTS URN string is a range
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: WantSubstr - Comment: WantSubstr tests whether the passage part of a URN string refers to a substring
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsCTSURN - Comment: IsCTSURN tests whether a string is a valid CTSURN
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsCITEURN - Comment: IsCITEURN tests whether a string is a valid CITE URN
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsTextgroupID - Comment: IsTextgroupID tests whether a CTSURN (string) points to the textgroup level
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsWorkID - Comment: IsWorkID tests whether a CTSURN (string) points to the work level
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsVersionID - Comment: IsVersionID tests whether a CTSURN (string) points to the version level
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: IsExemplarID - Comment: IsExemplarID tests whether a CTSURN (string) points to the exemplar level
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetPassageByID - Comment: GetPassageByID returns a Passage given the PassageID in a given Work
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetIndexByID - Comment: GetIndexByID searches for an ID in a given work and if found,
+returns its slice index in the Work.Passages slice (not the passage.Index)
+along with a bool indicating whether it has found the Passage
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetPassageByInd - Comment: GetPassageByInd returns the Passage at given Index in the Work.Passages slice
+(Not by Passage.Index)
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetFirst - Comment: GetFirst returns the Passage that is the first in the passage slice in a given a Work
+(not the one saved as Work.First)
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetLast - Comment: GetLast returns the Passage with the last index in the passage slice in a given a Work
+(not the one saved as Work.Last)
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetNext - Comment: GetNext returns the Passage after the Passage given the PassageID in given Work
+(not the next in the work.Passages slice)
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetPrev - Comment: GetPrev returns the Passage previous to the given the PassageID in given a Work
+(not the next in the work.Passages slice)
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: DelPassage - Comment: DelPassage deletes a Passage from a Work by changing the references
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: DelFirstPassage - Comment: DelFirstPassage deletes the first Passage from a Work by changing the references
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: DelLastPassage - Comment: DelLastPassage deletes the last Passage from a Work by changing the references
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: FindFirstIndex - Comment: FindFirstIndex was returning the First.Index saved in a passage.
+This task is now fulfilled by GetFirstIndex
+Now, FindFirstIndex returns the lowest Passage.Index of the Passages in a Work,
+along with a bool whether it has found one.
+This is necessary for the first analysis of a work. For example in SortPassages.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetFirstIndex - Comment: GetFirstIndex returns the Work.First.Index of given Work
+along with a bool whether it has found that index.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: FindLastIndex - Comment: FindLastIndex was returning the Last.Index saved in a passage.
+This task is now fulfilled by GetLastIndex
+Now, FindLastIndex returns the highest Passage.Index of the Passages in a Work
+along with a bool whether it has found one.
+This is necessary for the first analysis of a work. For example in SortPassages.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: GetLastIndex - Comment: GetLastIndex returns the Work.Last.Index of given Work
+along with a bool whether it has found that index.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: SortPassages - Comment: SortPassages sorts the Passages in the Work.Passages slice from First to Last
+according to their Passage.Index values
+empty Passages are not taken over
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: InsertPassage - Comment: InsertPassage inserts a Passage into a Work
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: RReturnSubStr - Comment: RReturnSubStr returns the substring identified by the reverse of @substr[n]. [n] is optional.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: ReturnSubStr - Comment: ReturnSubStr returns the substring identified by @substr[n]. [n] is optional.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: before - Comment: before returns the substring of the originalString that antecedes the beforThisString,
+as long as the beforeThisString is contained in the originalString
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: after - Comment: after returns the substring of the originalString that precedes the afterThisString,
+as long as the afterThisString is contained in the originalString.
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: ExtractTextByID - Comment: ExtractTextByID extracts the textual information from a Passage or multiple Passages in a Work
+
+Folder: ../../vedicsociety/brucheion-pro/gocite - File: gocite.go - Function: contains - Comment: contains returns true if the 'needle' string is found in the 'haystack' string slice
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: ingestimage.go - Function: GetImageInfo - Comment: from old Brucheion, image.go, getImageInfo
+prints the metadata of a specific image in the user database.
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: ingestimage.go - Function: PostAddImageToCITE - Comment: from old Brucheion, CITEcollection.go, addCITE and addImageToCITECollection
+adds image metadata to the specified collection in the bucket imgCollection in a user database
+It extracts the reference from the the http.Request and passes it to addtoCITECollection
+Examples:
+localhost:7000/addtoCITE?name="urn:cite2:iiifimages:test:"&urn="urn:cite2:iiifimages:test:1"&external="true"&protocol="iiif"&location="https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2/info.json"
+localhost:7000/addtoCITE?name="urn:cite2:staticimages:test:"&urn="urn:cite2:staticimages:test:1"&external="true"&protocol="static"&location="https://upload.wikimedia.org/wikipedia/commons/8/81/Rembrandt_The_Three_Crosses_1653.jpg"
+localhost:7000/addtoCITE?name="urn:cite2:dzi:test:"&urn="urn:cite2:nyaya:M3img.positive:m3_098"&external="false"&protocol="localDZ"&location="urn:cite2:nyaya:M3img.positive:m3_098"
+localhost:7000/addtoCITE?name="urn:cite2:mixedimages:test:"&urn="urn:cite2:iiifimages:test:1"&external="true"&protocol="iiif"&location="https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000004.jp2/info.json"
+localhost:7000/addtoCITE?name="urn:cite2:mixedimages:test:"&urn="urn:cite2:staticimages:test:1"&external="true"&protocol="static"&location="https://upload.wikimedia.org/wikipedia/commons/8/81/Rembrandt_The_Three_Crosses_1653.jpg"
+localhost:7000/addtoCITE?name="urn:cite2:mixedimages:test:"&urn="urn:cite2:nyaya:M3img.positive:m3_098"&external="false"&protocol="localDZ"&location="urn:cite2:nyaya:M3img.positive:m3_098"
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: passage_edit.go - Function: PostSaveTranscription - Comment: SaveTranscription parses a transcription from the http.Request
+and saves it to the corresponding URN bucket in the user database
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: passage_edit.go - Function: PostSaveReference - Comment: SaveTranscription parses a transcription from the http.Request
+and saves it to the corresponding URN bucket in the user database
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: passage_edit.go - Function: PostSavePassage - Comment: SaveTranscription parses a transcription from the http.Request
+and saves it to the corresponding URN bucket in the user database
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: passage_edit.go - Function: PostSaveMetadata - Comment: Save data from Edit Metadata page to DB
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/api - File: passage_handler.go - Function: GetCollectionImages - Comment: from old Brucheion, image.go, requestImgCollection
+prints a list of the collections (as a keys from hstore) in the image collection
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/root/collectionedit - File: collectionedit_editreferences.go - Function: GetEditReferences - Comment: Edit2Page prepares, loads, and renders the Image Citation Editor
+
+Folder: ../../vedicsociety/brucheion-pro/handlers/root/collectionedit - File: helpers.go - Function: retriveCollectionBucketWork - Comment: SelectUserBucketWork retrieves an entire work from the users database as an (ordered) gocite.Work object
+
+Folder: ../../vedicsociety/brucheion-pro/models/repo - File: sql_boltdata_save.go - Function: SaveBoltData - Comment: runs from cexupload_handler.go
+importcex
+
+Folder: ../../vedicsociety/brucheion-pro/models/repo - File: sql_helper.go - Function: RemoveDuplicatesUnordered - Comment: removeDuplicatesUnordered takes a string slice and returns it without any duplicates.
+
+Folder: ../../vedicsociety/brucheion-pro/models/repo - File: sql_helper.go - Function: Contains - Comment: contains returns true if the 'needle' string is found in the 'heystack' string slice
+
+Folder: ../../vedicsociety/brucheion-pro/models/repo - File: sql_loader.go - Function: loadMigrations - Comment: run in openDB
+
+Folder: ../../vedicsociety/brucheion-pro/utils - File: gobDecode.go - Function: GobDecodeImgCol - Comment: gobDecodeImgCol decodes a byte slice from the database to an imageCollection
+
+Folder: ../../vedicsociety/brucheion-pro/utils - File: handlers_helper.go - Function: retriveCollectionsBucketWork - Comment: SelectUserBucketWork retrieves an entire work from the users database as an (ordered) gocite.Work object
+

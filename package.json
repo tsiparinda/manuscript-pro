@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1318.0",
+    "true-myth": "^6.0.0"
+  }
+}

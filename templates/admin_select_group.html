@@ -1,0 +1,10 @@
+{{ $context := . }}
+
+<select id="form-select" class="form-select" name="group" value="{{ $context.Current }}">
+    <option value="0">Select a group</option>
+    {{ range $context.Groups }}
+        <option class="for-add" value="{{.Id}}">
+            {{.Name}}
+        </option>
+    {{ end }}
+</select>

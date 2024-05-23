@@ -1,0 +1,220 @@
+.tag {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 6px 14px;
+    gap: 10px;
+
+    position: relative;
+    width: 72px;
+    height: 22px;
+
+    /* light green */
+
+    background: #67D1AB;
+    border-radius: 30px;
+}
+
+.tag-public {
+    background: #67D1AB;
+}
+
+.tag-private {
+    background: #ECC797 !important;
+}
+
+#tag-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 10px;
+    /* identical to box height, or 100% */
+
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    /* black */
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+
+#br-head {
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: black;
+
+}
+
+.text-br-primary {
+    color: #177CB1 !important;
+}
+
+.bg-br-primary {
+    background-color: #177CB1 !important;
+}
+
+
+.font-w6 {
+    font-weight: 600 !important;
+}
+
+.editor {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    /* identical to box height, or 111% */
+
+
+    /* black */
+
+    color: #000000;
+}
+
+.editor-name {
+    color: #177CB1;
+}
+
+.desc {
+    /* body 1 */
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+    letter-spacing: 0.04em;
+
+    /* black */
+
+    color: #000000;
+
+}
+
+
+#card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.tile {
+    align-items: stretch;
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: min-content;
+}
+
+.tile.is-ancestor {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    margin-top: -0.75rem;
+}
+
+.tile.is-ancestor:last-child {
+    margin-bottom: -0.75rem;
+}
+
+.tile.is-ancestor:not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+
+.tile.is-child {
+    margin: 0 !important;
+}
+
+.tile.is-parent {
+    padding: 0.75rem;
+}
+
+.tile.is-vertical {
+    flex-direction: column;
+}
+
+.tile.is-vertical>.tile.is-child:not(:last-child) {
+    margin-bottom: 1.5rem !important;
+}
+
+@media screen and (min-width: 769px),
+print {
+    .tile:not(.is-child) {
+        display: flex;
+    }
+
+    .tile.is-1 {
+        flex: none;
+        width: 8.33333%;
+    }
+
+    .tile.is-2 {
+        flex: none;
+        width: 16.66667%;
+    }
+
+    .tile.is-3 {
+        flex: none;
+        width: 25%;
+    }
+
+    .tile.is-4 {
+        flex: none;
+        width: 33.33333%;
+    }
+
+    .tile.is-5 {
+        flex: none;
+        width: 41.66667%;
+    }
+
+    .tile.is-6 {
+        flex: none;
+        width: 50%;
+    }
+
+    .tile.is-7 {
+        flex: none;
+        width: 58.33333%;
+    }
+
+    .tile.is-8 {
+        flex: none;
+        width: 66.66667%;
+    }
+
+    .tile.is-9 {
+        flex: none;
+        width: 75%;
+    }
+
+    .tile.is-10 {
+        flex: none;
+        width: 83.33333%;
+    }
+
+    .tile.is-11 {
+        flex: none;
+        width: 91.66667%;
+    }
+
+    .tile.is-12 {
+        flex: none;
+        width: 100%;
+    }
+}

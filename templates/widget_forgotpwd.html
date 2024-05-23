@@ -1,0 +1,48 @@
+<form id="fpwd-form" class="w-full px-4 bg-white" hx-post="" hx-swap="outerHTML"
+      {{if .UseRecaptcha}}
+      hx-trigger="verified" >
+  <input type="hidden" id="recaptcha" name="recaptcharesponse">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="text/javascript">
+    function onSubmit(token) {
+      document.querySelector("#recaptcha").value = token
+      const event = new Event('verified');
+      const elem = document.querySelector("#fpwd-form");
+      elem.dispatchEvent(event);
+    }
+  </script>
+  {{else}}
+  >
+  {{end}}
+  <div class="mb-4">
+    <label for="email" class="block text-sm text-black pb-2 text-[13px] font-[450]">EMAIL</label>
+    <input type="email" id="email" name="email"
+           class="w-full py-2 px-4 bg-gray-100 rounded-full focus:outline-none focus:border-blue-500
+           {{if .SuccessMsg}} text-gray-500  {{end}}"
+           value="{{.Email}}"
+           placeholder="you@example.com"
+           {{if .SuccessMsg}} disabled {{end}}
+           required>
+
+    {{if .ErrorMsg}}
+    <p class="text-red-500 p-2">{{.ErrorMsg}}</p>
+    {{end}}
+    {{if .SuccessMsg}}
+    <p class="text-green-500 p-2">{{.SuccessMsg}}</p>
+    {{end}}
+  </div>
+  <div class="flex justify-center">
+    <button
+            {{if .UseRecaptcha }}
+            data-sitekey="{{ .RecaptchaKey }}" data-callback='onSubmit' data-action='fpwd'
+            {{else}}
+            type="submit"
+            {{end }}
+            class="g-recaptcha bg-bblue-500 text-white py-3 px-6 rounded-full flex items-start">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span class="px-2">Reset Password</span>
+    </button>
+  </div>
+</form>

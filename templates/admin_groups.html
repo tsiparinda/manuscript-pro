@@ -1,0 +1,43 @@
+{{ $context := . }}
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ range $context.Groups }}
+            {{ if ne $context.EditId .Id }}
+                <tr>
+                    <td>{{ .Id }}</td>
+                    <td>{{ .Name }}</td>
+                    <td class="text-center">
+                        <form method="POST" action="{{ $context.EditUrl }}">
+                            <input type="hidden" name="id" value="{{ .Id }}" />
+                            <button class="btn btn-sm btn-warning" type="submit">
+                                Edit
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {{ else }}
+                <tr>
+                    <form method="POST" action="{{ $context.SaveUrl }}" >
+                        <input type="hidden" name="id" value="{{ .Id }}" />
+                        <td>
+                            <input class="form-control" disabled value="{{ .Id }}" 
+                                size="3"/> 
+                        </td>
+                        <td><input name="name" class="form-control" size=12 
+                            value="{{ .Name }}" /></td>
+                            <button class="btn btn-sm btn-danger" type="submit">
+                                Save
+                            </button>
+                        </td>
+                    </form>
+                </tr>
+            {{ end }}
+        {{ end }}
+    </tbody>
+</table>

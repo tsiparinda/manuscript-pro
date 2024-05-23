@@ -1,0 +1,37 @@
+{{ $context := . }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Brucheion</title>
+    <link href="/files/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body> 
+                    <form method="POST" action="{{ $context.SaveUrl }}" >
+                        <input type="hidden" name="id" value="{{ .Id }}" />
+                        <div>
+                            <input  class="form-control" disabled value="{{ .Id }}" 
+                                size="3"/> 
+                        </div>
+                        <div>
+                            <input name="username" class="form-control" size=12 
+                            value="{{ .Username }}" />
+                        </div>
+                        <div>
+                            <input disabled name="email" class="form-control" 
+                             size=15 value="{{ .Email }}" />
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-danger" type="submit">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                    <form method="POST" action="{{ $context.ResetPWDUrl }}">
+                        <input type="hidden" name="id" value="{{ .Id }}" />
+                        <button class="btn btn-sm btn-warning" type="submit">
+                            Reset password
+                        </button>
+                    </form>
+                </body>
+                </html>

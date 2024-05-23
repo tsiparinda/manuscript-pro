@@ -1,0 +1,18 @@
+{{ $context := . }}
+<div>
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ROUTES</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $context.Routes }}
+                    <tr>
+                        <td>{{ . }}</td>
+                    </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>

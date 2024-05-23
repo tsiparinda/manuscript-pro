@@ -1,0 +1,131 @@
+{
+    "name": "Brucheion",
+    "description": "Brucheion is a Virtual Enviroment (VRE) to create Linked Open Data (LOD) for historical languages and the research of historical objects",
+    "keywords": [
+      "brucheion",
+      "sanskrit",
+      "research"
+    ],
+    "repository": "https://github.com/vedicsociety/brucheion-pro",
+    "logo": "https://github.com/vedicsociety/brucheion-assets/blob/1cbe33a2ea4b138e8a5072d4d849543d31e75ed7/BrucheionLogo.png?raw=true",
+    "success_url": "/",
+    "env": {
+        "BR_system_hostname": {
+            "description": "Full URL address for new server",
+            "value": "https://App_name.herokuapp.com",
+            "required": true
+        },
+        "BR_system_adminName": {
+          "description": "Name of user who will administrate site",
+          "value": "Administrator",
+          "required": true
+        },
+        "BR_system_adminEmail": {
+          "description": "Adinistrator's email",
+          "value": "administrator@domain.name",
+          "required": true
+        },
+        "BR_system_adminPassword": {
+          "description": "Administrator's password",
+          "value": "12345678",
+          "required": true
+        },
+        "BR_sql_connectionUrl": {
+            "description": "URL address to Postgres DB, should be copy from DATABASE_URL after deploying",
+            "value": "postgres://example.compute.amazonaws.com:5432/dbname",
+            "required": true
+        },
+        "BR_sql_alwaysReset": {
+            "description": "Flag for reset DB on every restart (only for debug)",
+            "value": "false",
+            "required": true
+        },
+        "BR_auth_isenabled": {
+            "description": "Enable Basic Authentication for all site.",
+            "value": "false",
+            "required": true
+        },
+        "BR_auth_user": {
+            "description": "User name for Basic Authentication",
+            "value": "authuser",
+            "required": true
+        },
+        "BR_auth_password": {
+            "description": "User password for Basic Authentication",
+            "value": "12345678",
+            "required": true
+        },
+        "BR_authorization_allowsignup": {
+          "description": "Show'Sign up' page.",
+          "value": "false",
+          "required": true
+        },
+        "BR_authorization_showgoogle": {
+          "description": "Show 'Sign in with Google' button.",
+          "value": "false",
+          "required": true
+        },
+        "BR_authorization_showgithub": {
+          "description": "Show 'Sign in with Github' button.",
+          "value": "false",
+          "required": true
+        },
+        "BR_authorization_userecaptcha": {
+          "description": "Use recaptcha for additional security",
+          "value": "false",
+          "required": true
+        },
+        "BR_authorization_recaptchakey": {
+          "description": "If using recaptcha the key to be used",
+          "value": "xxxxx",
+          "required": false
+        },
+        "BR_authorization_recaptchasecret": {
+          "description": "If using recaptcha the secret to be used",
+          "value": "xxxxxx",
+          "required": false
+        },
+        "BR_oauth_GoogleClientId": {
+            "description": "ClientId for OAuth Authentication for Google",
+            "value": "000000000",
+            "required": true
+        },
+        "BR_oauth_GoogleClientSecret": {
+            "description": "ClientSecret for OAuth Authentication for Github",
+            "value": "1111111111",
+            "required": true
+        },
+        "BR_sendmail_smtpHost": {
+            "description": "Host name for send mail",
+            "value": "smtp.mailgun.org",
+            "required": true
+        },
+        "BR_sendmail_smtpPass": {
+            "description": "Password to smtp server for send mail, should be copy from MAILGUN_SMTP_PASSWORD after deploying",
+            "value": "12345678",
+            "required": true
+        },
+        "BR_sendmail_smtpUser": {
+            "description": "Login name to smtp server for send mail, should be copy from MAILGUN_SMTP_LOGIN after deploying",
+            "value": "postmaster@sandboxb00000000000000.mailgun.org",
+            "required": true
+        }
+    },
+    "addons": [
+      {
+        "plan": "heroku-postgresql:mini"
+      }
+    ],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      },
+      {
+        "url": "heroku/go"
+    }
+    ],
+    "scripts": {
+      "postdeploy": "scripts/postdeploy.sh"
+    }
+  }
+  

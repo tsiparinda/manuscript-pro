@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Brucheion</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+     {{template "stylesheets"}}
+    <script src="/files/js/aws-sdk-2.1318.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/files/js/dragging.min.js"></script>
+    <script src="/files/js/typeahead.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="/files/js/bootstrap.min.js"></script>
+
+</head>
+<body class="fbody">
+    <div class="ffull">
+
+
+    {{ handler "menu" "getmenu" ""}}
+
+    <div class="fmain-content">
+        {{ body }}
+    </div>
+    
+    <footer class="ffooter fixed-bottom text-center text-lg-start bg-white text-muted border">
+        <div class="p-2" style="background-color: rgba(0, 0, 0, 0.025);">
+            <a class="text-dark p-3" href="/">About</a>
+            <a class="text-dark p-3" href="/">Contact</a>
+            <a class="text-center p-3">Brucheion is a Virtual Enviroment (VRE) to create Linked Open Data (LOD) for historical languages and the research of historical objects</a>
+        </div>
+    </footer>
+
+    </div>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+{{ $context := . }}
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th><th>Name</th><th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ range $context.Users }}
+            {{ if ne $context.EditId .Id }}
+                <tr>
+                    <td>{{ .Id }}</td>
+                    <td>{{ .Username }}</td>
+                    <td>{{ .Email }}</td>
+                    <td>
+                        <span class="d-inline-block text-truncate" 
+                            style="max-width: 200px;">
+                            {{ range .Roles }}
+                                {{ .Name }} <br>
+                            {{ end }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <form method="POST" action="{{ $context.EditUrl }}">
+                            <input type="hidden" name="id" value="{{ .Id }}" />
+                            <button class="btn btn-sm btn-warning" type="submit">
+                                Edit
+                            </button>
+                        </form>
+                    </td>
+                    <td class="text-center">
+                        <form method="POST" action="{{ $context.DeleteUrl }}">
+                            <input type="hidden" name="id" value="{{ .Id }}" />
+                            <button class="btn btn-sm btn-warning" type="submit">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {{ else }}
+                <tr>
+                    <form method="POST" action="{{ $context.SaveUrl }}">
+                        <input type="hidden" name="id" value="{{ .Id }}" />
+                        <td><input class="form-control" disabled value="{{ .Id }}" size="3"/></td>
+                        <td><input name="username" class="form-control" size=12 value="{{ .Username }}" /></td>
+                        <td><input name="email" class="form-control" size=15 value="{{ .Email }}" />
+                            <a href="#">Change password</a>
+                        </td>
+                        <td>
+                                <ul >
+                                    {{ range .Roles }}
+                                        <li value="{{.Id}}" class="roleout-id">{{ .Name }} <span class="roleout">x</span></li>    
+                                    {{ end }}
+                                    <li id="gr-selector">{{ handler "groups" "getselect" .Roles }}</li>
+                                </ul>
+                            </span>
+                        </td>
+                        <td>
+                            <div>   
+                                <button class="btn btn-sm btn-success" type="submit" name="action" value="Save" onclick="return setRoles();">
+                                    Save
+                                </button>
+                                <button class="btn btn-sm btn-danger" type="submit" name="action" value="Cancel">
+                                    Cancel
+                                </button>
+                                <button type="submit" name="action" value="ResetPwd" class="btn btn-sm btn-info">
+                                    Reset password
+                                </button>
+                            </div>
+                            <input type="hidden" id="roles-submit" name="roles"  value="" />
+                        </td>
+                    </form>
+                   
+                </tr>
+            {{ end }}
+        {{ end }}
+    </tbody>
+</table>
+<script>
+    // Get all elements with class="roleout"
+    var closebtns = document.getElementsByClassName("roleout");
+    var i;
+
+    // Loop through the visual elements, and hide the parent, when clicked on
+    for (i = 0; i < closebtns.length; i++) {
+    closebtns[i].addEventListener("click", function() {
+        this.parentElement.style.display = 'none';
+    });
+    }
+   function setRoles() {
+        // Get all elements with class="roleout"
+         var roleout = document.getElementsByClassName("roleout-id");
+         var roles = document.getElementById('roles-submit');
+         const  temp = [];
+        var u;
+            for (u=0; u<roleout.length; u++) {
+                if (roleout[u].style.display != 'none') {
+                    temp.push(roleout[u].value)
+                 // concat(roles.value, closebtns[u].parentElement.firstChild.textContent);  
+                }
+            }
+            var selroles = document.getElementsByClassName('for-add')
+            for (n=0; n<selroles.length; n++) {
+                //alert (selroles[n].selected);
+                if (selroles[n].value > 0 && selroles[n].selected ) {
+                    temp.push(parseInt(selroles[n].value));
+                 //    concat(roles.value + selroles[n].text);
+                }
+           }
+           jtemp = JSON.stringify( temp)
+           roles.value=jtemp;
+   }
+
+   const form = document.getElementById('form-signup');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    
+    fetch('/forgotpwd', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json()) // This converts the raw response into a JavaScript object
+    .then(data => {
+        // 'data' is now a JavaScript object. You can access its properties normally.
+        const message = data.message;
+        alert(message); 
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+</script>

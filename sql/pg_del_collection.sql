@@ -1,0 +1,1 @@
+delete from collections where id=($1) and id_author=($2);

@@ -1,0 +1,43 @@
+{{ $context := . }}
+
+<section class="hero is-link hero-navigation">
+  <div class="hero-body">
+    <div class="container">
+      <div class="hero-passage-title">
+        <h1 class="title">
+          {{.Title}}
+        </h1>
+        <form class="urn-picker" name="nav">
+          <div class="control">
+            <div class="select">
+              <select
+                      class="select-urn"
+                      name="SelectURL"
+                      onchange="document.location.href=document.nav.SelectURL.options[document.nav.SelectURL.selectedIndex].value">
+                {{.TextHTML}}
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="hero-passage-selection">
+      <div class="box">
+        <a href="{{.First}}" class="navigate first" title="First passage">
+          <i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>
+        </a>
+        <a href="{{.Previous}}" class="navigate previous" title="Previous passage">
+          <i class="fa fa-chevron-left"></i>
+        </a>
+        <strong class="urn">{{.Title}}</strong>
+        <a href="{{.Next}}" class="navigate next" title="Next passage">
+          <i class="fa fa-chevron-right"></i>
+        </a>
+        <a href="{{.Last}}" class="navigate last" title="Last passage">
+          <i class="fa  fa-chevron-right"></i><i class="fa  fa-chevron-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+

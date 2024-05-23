@@ -1,0 +1,122 @@
+{
+    "system" : {
+        "attention": "!!!DON'T USE UNDERSCOPE SYMBOL (_) IN CONFIG PARAMETER'S NAMES!!!",
+        "prefix": "BR_",
+        "hostname": "http://localhost:5100",
+        "adminName": "Administator",
+        "adminEmail": "admin@domainname.org",
+        "adminPassword": "1234567890"
+    },
+    "auth" : {
+        "isenabled": false,
+        "user": "bruch",
+        "password": "eion"
+    },
+    "oauth" : {
+        "GoogleClientId": "1234567890.apps.googleusercontent.com",
+        "GoogleClientSecret": "GOCSPX-1234567890",
+        "GithubClientId": "1234567890",
+        "GithubClientSecret": "12345678900000"
+    },
+    "logging" : {
+        "level": "debug"
+    },
+    "files": {
+        "path": "files"
+    },
+    "templates": {
+        "path": "templates/*.html",
+        "reload": true
+    },
+    "sessions": {
+        "key": "MY_SESSION_KEY",
+        "cyclekey": true
+    },
+    "main": {
+        "message": "Hello from Brucheion's config!"
+            },
+    "authorization": {
+                "allowsignup": true,
+                "showgoogle": true,
+                "showgithub": false,
+                "failUrl": "/signin",
+                "userecaptcha": true,
+                "recaptchakey": "1234567890",
+                "recaptchasecret": "1234567890"
+            },
+    "sendmail": {
+                "from": "no-reply@domainname.org",
+                "smtpPass": "sample",
+                "smtpUser": "no-reply@domainname.org",
+                "smtpHost": "smtp.domainname.com",
+                "smtpPort": 587,
+                "tmplatesdir": "templates/email"
+            },
+    "http": {
+                "enableHttp": true,
+                "port": 5100,
+                "enableHttps": false,
+                "httpsPort": 5500,
+                "httpsCert": "certificate.cer",
+                "httpsKey": "certificate.key"
+            },
+    "storage": {
+                "aws": {
+                        "bucketname": "brucheion",
+                        "region": "eu-west-1",
+                        "token": "eu-west-1:1234567890",
+                        "prefix": ""
+                        }
+                },
+    "sql": {
+                "driverName": "postgres",
+                "connectionUrl": "postgres://example.compute.amazonaws.com:5432/dbname",
+                "migrationsPath": "file://./sql/migrations",
+                "alwaysReset": false,
+                "migrationsForce": true,
+                "migrationsVersion": 7,
+                "commands": {
+                    "SelectCollectionBucketDictionary": "sql/pg_sel_collectionbucketdict.sql", 
+                    "SelectCollectionBuckets": "sql/pg_sel_collectionbuckets.sql",
+                    "SelectCollectionBucketKeyValue": "sql/pg_sel_collectionbucketkeyvalue.sql",
+                    "SelectCollectionBucketKeys": "sql/pg_sel_collectionbucketkeys.sql",
+                    "SelectCollectionImageDictionary": "sql/pg_sel_collectionimagedict.sql", 
+                    "SelectCollectionImageKeyValue": "sql/pg_sel_collectionimagekeyvalue.sql",
+                    "GetBoltCatalog": "sql/pg_sel_boltcatalog.sql",
+                    "GetPassage": "sql/pg_sel_passage.sql",
+                    "SaveCiteDataDict": "sql/pg_upd_citedata_dict.sql",
+                    "SaveImageDataDict": "sql/pg_upd_imagedata_dict.sql",
+                    "CreateBucketIfNotExists": "sql/pg_ins_bucket.sql",
+                    "AddNewCollection": "sql/pg_ins_collection.sql",
+                    "GetUserByID": "sql/pg_sel_userbyid.sql",
+                    "GetGroupByName": "sql/pg_sel_groupbyname.sql",
+                    "GetUserByName": "sql/pg_sel_userbyname.sql",
+                    "GetUserByEmail": "sql/pg_sel_userbyemail.sql",
+                    "GetUserByVerificationCode": "sql/pg_sel_userbyvcode.sql",
+                    "GetUserGroups": "sql/pg_sel_usergroups.sql",
+                    "GetCredentials": "sql/pg_sel_credentials.sql",
+                    "GetUsers": "sql/pg_sel_users.sql",
+                    "GetGroups": "sql/pg_sel_groups.sql",
+                    "AddNewUser": "sql/pg_ins_user.sql", 
+                    "AddUserAdmin": "sql/pg_ins_user_admin.sql",
+                    "UpdateUser": "sql/pg_upd_user.sql",
+                    "UpdateGroup": "sql/pg_upd_group.sql",
+                    "DeleteUserGroup": "sql/pg_del_usergroups.sql",
+                    "AddUserToGroup": "sql/pg_ins_usergroups.sql",
+                    "GetGroupById": "sql/pg_sel_groupbyid.sql",
+                    "SelectCollectionsPage": "sql/pg_sel_collectionspage.sql",
+                    "SelectCollectionsPageCount": "sql/pg_sel_collections_page_count.sql",
+                    "GetAuthorPage": "sql/pg_sel_author_page.sql",
+                    "GetAuthorPageCount": "sql/pg_sel_author_page_count.sql",
+                    "DeleteCollection": "sql/pg_del_collection.sql",
+                    "SelectCollection": "sql/pg_sel_collection.sql",
+                    "UpdateCollection": "sql/pg_upd_collection.sql",
+                    "SelectColUsers": "sql/pg_sel_colusers.sql",
+                    "DropCollectionsUser": "sql/pg_del_collectionsuser.sql",
+                    "DropCollectionUsers": "sql/pg_del_collectionusers.sql",
+                    "InsertColUsers": "sql/pg_ins_colusers.sql",
+                    "IsCollectionWriteble": "sql/pg_sel_iscollectionwriteble.sql",
+                    "SelectImageCollectionList": "sql/pg_sel_imagecollectionlist.sql"
+                    }
+            }
+}

@@ -1,0 +1,42 @@
+{{ $context := . }}
+
+<nav class="fnavbar navbar navbar-expand-lg navbar-light navbar-fixed-top sticky-top" style="background-color: #177CB1;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/files/img/nlogo.svg" alt="Brucheion" class="d-inline-block align-top" width="auto"
+                height="35px">
+        </a>
+
+        <ul class="nav navbar-nav">
+            {{ if not $context.User.IsAuthenticated }}
+            <li class="nav-item">
+                <div class="buttons justify-content-end">
+                    <form class="form-inline" method="GET" action="/auth/signin">
+                        <button class="btn btn-light my-2 my-sm-0 bg-white text-dark rounded-pill" type="submit">
+                            <strong>Sign in</strong>
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {{ else }}
+
+            {{ range $key, $value := $context.MenuSections }}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" role="button" data-toggle="dropdown" aria-expanded="false"
+                    id="navbarDropdownMenuLink">
+                    {{ $value.Paragraph}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="right: 0;   left: auto;">
+                    {{ range $k, $sec := $value.Items }}
+                    <li><a class="dropdown-item"
+                            href="{{ call $context.SectionUrlFunc $sec.Handler $sec.Action $sec.Section }}">{{ $sec.Name
+                            }}</a></li>
+                    {{ end }}
+                </ul>
+            </li>
+            {{ end }}
+
+            {{ end }}
+        </ul>
+    </div>
+</nav>

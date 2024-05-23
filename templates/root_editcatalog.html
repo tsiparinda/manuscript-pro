@@ -1,0 +1,71 @@
+{{ layout "root_layout.html" }}
+
+{{ $context := . }}
+
+
+
+<div class="container is-fluid">
+		<section>
+			<div class="tile is-ancestor">
+				<div class="tile is-parent">
+					<div class="tile is-child">
+						<br/>
+						<div class="tile is-child">
+							<a class="button is-medium" href="/view/{{.ColId}}/home/">Cancel</a>
+							<form method="POST" action="/tools/editcatalog">
+								<div class="form-group">
+									<input type="hidden" class="form-control" name="colid" value="{{.ColId}}">
+
+									<label for="urn">WorkURN:</label>
+									<input type="text" class="form-control" name="urn" value="{{.URN}}"  readonly>
+
+									<span class="help-block">Please enter a CTS URN: It has 4 colons (and ends on one ending on one). After "urn:cts:[yourcollection]:",
+										you have to provide at least workgroup ID and work ID separated by a ".". Additionaly, you can provide version
+										and exemplar IDs.</span>
+
+										<label for="citationScheme">Scheme:</label>
+										<input type="text" class="form-control" name="citationScheme" value="{{.Citation}}">
+
+										<span class="help-block">What is the citation scheme of the work? For example, "1.1.1" could resemble "book/chapter/paragraph".</span>
+
+										<label for="groupName">Workgroup:</label>
+										<input type="text" class="form-control" name="groupName" value="{{.GroupName}}">
+	
+										<span class="help-block">Workgroup in natural language.</span>
+	
+										<label for="worktitle">Title:</label>
+										<input type="text" class="form-control" name="worktitle" value="{{.WorkTitle}}">
+	
+										<span class="help-block">Title in natural language.</span>
+	
+										<label for="versionLabel">Version:</label>
+										<input type="text" class="form-control" name="versionLabel" value="{{.VersionLabel}}">
+										
+										<span class="help-block">Version in natural language.</span>
+	
+										<label for="exemplarLabel">Exemplar:</label>
+										<input type="text" class="form-control" name="exemplarLabel" value="{{.ExemplarLabel}}">
+	
+										<span class="help-block">Exemplar in natural language.</span>
+	
+										<label for="online">Online:</label>
+										<input type="text" class="form-control" name="online" value="{{.Online}}">
+	
+										<span class="help-block">Boolean; usually "true".</span>
+	
+										<label for="language">Language:</label>
+										<input type="text" class="form-control" name="language" value="{{.Language}}">
+	
+										<span class="help-block">Language ID</span>
+	
+								</div>
+								<input class="button is-primary" type="submit" value="Save">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+

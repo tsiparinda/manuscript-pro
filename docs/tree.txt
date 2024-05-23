@@ -1,0 +1,558 @@
+.
+├── app.json
+├── auth
+│   ├── account_handler.go
+│   ├── auth_handler.go
+│   ├── auth.drawio.svg
+│   ├── oauth_handler.go
+│   ├── oauth_helper.go
+│   ├── recaptcha.go
+│   ├── signin_db.go
+│   ├── signout_handler.go
+│   └── user_store.go
+├── config.json
+├── docs
+│   └── tree.txt
+├── files
+│   ├── app
+│   │   ├── dist
+│   │   │   ├── bundle.css
+│   │   │   ├── bundle.css.map
+│   │   │   ├── bundle.js
+│   │   │   └── bundle.js.map
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── rollup.config.js
+│   │   ├── src
+│   │   │   ├── App.svelte
+│   │   │   ├── components
+│   │   │   │   ├── BlockEditor_self.svelte
+│   │   │   │   ├── BlockEditor.svelte
+│   │   │   │   ├── FormLine.svelte
+│   │   │   │   ├── ImageEditor.svelte
+│   │   │   │   ├── LineEditor.svelte
+│   │   │   │   ├── Message.svelte
+│   │   │   │   ├── MetadataEditor.svelte
+│   │   │   │   ├── Modal.svelte
+│   │   │   │   ├── Objects.svelte
+│   │   │   │   ├── ResizeBarLanscape.svelte
+│   │   │   │   ├── ResizeBarPortrait.svelte
+│   │   │   │   ├── TextAheadOverlay.svelte
+│   │   │   │   └── TextInput.svelte
+│   │   │   ├── lib
+│   │   │   │   ├── cts-urn.js
+│   │   │   │   ├── debounce.js
+│   │   │   │   ├── fs.js
+│   │   │   │   ├── horizontalLineOverlay.js
+│   │   │   │   ├── iiif.js
+│   │   │   │   ├── openseadragon
+│   │   │   │   │   ├── changelog.txt
+│   │   │   │   │   ├── images
+│   │   │   │   │   │   ├── button_grouphover.png
+│   │   │   │   │   │   ├── button_hover.png
+│   │   │   │   │   │   ├── button_pressed.png
+│   │   │   │   │   │   ├── button_rest.png
+│   │   │   │   │   │   ├── flip_grouphover.png
+│   │   │   │   │   │   ├── flip_hover.png
+│   │   │   │   │   │   ├── flip_pressed.png
+│   │   │   │   │   │   ├── flip_rest.png
+│   │   │   │   │   │   ├── fullpage_grouphover.png
+│   │   │   │   │   │   ├── fullpage_hover.png
+│   │   │   │   │   │   ├── fullpage_pressed.png
+│   │   │   │   │   │   ├── fullpage_rest.png
+│   │   │   │   │   │   ├── guidehorizontal_grouphover.png
+│   │   │   │   │   │   ├── guidehorizontal_hover.png
+│   │   │   │   │   │   ├── guidehorizontal_pressed.png
+│   │   │   │   │   │   ├── guidehorizontal_rest.png
+│   │   │   │   │   │   ├── guidevertical_grouphover.png
+│   │   │   │   │   │   ├── guidevertical_hover.png
+│   │   │   │   │   │   ├── guidevertical_pressed.png
+│   │   │   │   │   │   ├── guidevertical_rest.png
+│   │   │   │   │   │   ├── home_grouphover.png
+│   │   │   │   │   │   ├── home_hover.png
+│   │   │   │   │   │   ├── home_pressed.png
+│   │   │   │   │   │   ├── home_rest.png
+│   │   │   │   │   │   ├── next_grouphover.png
+│   │   │   │   │   │   ├── next_hover.png
+│   │   │   │   │   │   ├── next_pressed.png
+│   │   │   │   │   │   ├── next_rest.png
+│   │   │   │   │   │   ├── previous_grouphover.png
+│   │   │   │   │   │   ├── previous_hover.png
+│   │   │   │   │   │   ├── previous_pressed.png
+│   │   │   │   │   │   ├── previous_rest.png
+│   │   │   │   │   │   ├── rotateleft_grouphover.png
+│   │   │   │   │   │   ├── rotateleft_hover.png
+│   │   │   │   │   │   ├── rotateleft_pressed.png
+│   │   │   │   │   │   ├── rotateleft_rest.png
+│   │   │   │   │   │   ├── rotateright_grouphover.png
+│   │   │   │   │   │   ├── rotateright_hover.png
+│   │   │   │   │   │   ├── rotateright_pressed.png
+│   │   │   │   │   │   ├── rotateright_rest.png
+│   │   │   │   │   │   ├── zoomin_grouphover.png
+│   │   │   │   │   │   ├── zoomin_hover.png
+│   │   │   │   │   │   ├── zoomin_pressed.png
+│   │   │   │   │   │   ├── zoomin_rest.png
+│   │   │   │   │   │   ├── zoomout_grouphover.png
+│   │   │   │   │   │   ├── zoomout_hover.png
+│   │   │   │   │   │   ├── zoomout_pressed.png
+│   │   │   │   │   │   └── zoomout_rest.png
+│   │   │   │   │   ├── LICENSE.txt
+│   │   │   │   │   ├── openseadragon-guides.js
+│   │   │   │   │   ├── openseadragon-guides.js.map
+│   │   │   │   │   ├── openseadragon.js
+│   │   │   │   │   ├── openseadragon.js.map
+│   │   │   │   │   ├── openseadragon.min.js
+│   │   │   │   │   └── openseadragon.min.js.map
+│   │   │   │   ├── osd.js
+│   │   │   │   ├── s3helper.js
+│   │   │   │   ├── url.js
+│   │   │   │   └── utils.js
+│   │   │   ├── main.js
+│   │   │   ├── routes
+│   │   │   │   ├── AddCollection.svelte
+│   │   │   │   ├── CollectionBulkEdit.svelte
+│   │   │   │   ├── CollectionOverview.svelte
+│   │   │   │   ├── Collections.svelte
+│   │   │   │   ├── IngestCex.svelte
+│   │   │   │   ├── IngestImage.svelte
+│   │   │   │   ├── NewBucket.svelte
+│   │   │   │   ├── NotFound.svelte
+│   │   │   │   └── ShareCollection.svelte
+│   │   │   └── transitions
+│   │   │       └── growAndFade.js
+│   │   └── test
+│   │       └── urn.js
+│   ├── css
+│   │   ├── admin_users.css
+│   │   ├── application.css
+│   │   ├── application.min.css
+│   │   ├── auth_cup_of_tea.css
+│   │   ├── bootstrap.min.css
+│   │   ├── bootstrap.min.css.map
+│   │   ├── brulma.css
+│   │   ├── bulma.css.map
+│   │   ├── bulma.min.css
+│   │   ├── collections.css
+│   │   ├── common.css
+│   │   ├── font-awesome.css
+│   │   ├── font-awesome.min.css
+│   │   ├── images
+│   │   │   ├── button_grouphover.png
+│   │   │   ├── button_hover.png
+│   │   │   ├── button_pressed.png
+│   │   │   ├── button_rest.png
+│   │   │   ├── fullpage_grouphover.png
+│   │   │   ├── fullpage_hover.png
+│   │   │   ├── fullpage_pressed.png
+│   │   │   ├── fullpage_rest.png
+│   │   │   ├── guidehorizontal_grouphover.png
+│   │   │   ├── guidehorizontal_hover.png
+│   │   │   ├── guidehorizontal_pressed.png
+│   │   │   ├── guidehorizontal_rest.png
+│   │   │   ├── guidevertical_grouphover.png
+│   │   │   ├── guidevertical_hover.png
+│   │   │   ├── guidevertical_pressed.png
+│   │   │   ├── guidevertical_rest.png
+│   │   │   ├── home_grouphover.png
+│   │   │   ├── home_hover.png
+│   │   │   ├── home_pressed.png
+│   │   │   ├── home_rest.png
+│   │   │   ├── next_grouphover.png
+│   │   │   ├── next_hover.png
+│   │   │   ├── next_pressed.png
+│   │   │   ├── next_rest.png
+│   │   │   ├── previous_grouphover.png
+│   │   │   ├── previous_hover.png
+│   │   │   ├── previous_pressed.png
+│   │   │   ├── previous_rest.png
+│   │   │   ├── rotateleft_grouphover.png
+│   │   │   ├── rotateleft_hover.png
+│   │   │   ├── rotateleft_pressed.png
+│   │   │   ├── rotateleft_rest.png
+│   │   │   ├── rotateright_grouphover.png
+│   │   │   ├── rotateright_hover.png
+│   │   │   ├── rotateright_pressed.png
+│   │   │   ├── rotateright_rest.png
+│   │   │   ├── selection_cancel_grouphover.png
+│   │   │   ├── selection_cancel_hover.png
+│   │   │   ├── selection_cancel_pressed.png
+│   │   │   ├── selection_cancel_rest.png
+│   │   │   ├── selection_confirm_grouphover.png
+│   │   │   ├── selection_confirm_hover.png
+│   │   │   ├── selection_confirm_pressed.png
+│   │   │   ├── selection_confirm_rest.png
+│   │   │   ├── selection_grouphover.png
+│   │   │   ├── selection_hover.png
+│   │   │   ├── selection_pressed.png
+│   │   │   ├── selection_rest.png
+│   │   │   ├── zoomin_grouphover.png
+│   │   │   ├── zoomin_hover.png
+│   │   │   ├── zoomin_pressed.png
+│   │   │   ├── zoomin_rest.png
+│   │   │   ├── zoomout_grouphover.png
+│   │   │   ├── zoomout_hover.png
+│   │   │   ├── zoomout_pressed.png
+│   │   │   └── zoomout_rest.png
+│   │   ├── navigation.css
+│   │   ├── style.css
+│   │   └── view.css
+│   ├── fonts
+│   │   ├── fontawesome-webfont.eot
+│   │   ├── fontawesome-webfont.svg
+│   │   ├── fontawesome-webfont.ttf
+│   │   ├── fontawesome-webfont.woff
+│   │   ├── fontawesome-webfont.woff2
+│   │   ├── FontAwesome.otf
+│   │   ├── ibm-plex-mono-v5-latin-500.woff
+│   │   ├── ibm-plex-mono-v5-latin-500.woff2
+│   │   ├── Inter-Regular.woff
+│   │   ├── Inter-Regular.woff2
+│   │   ├── Inter-SemiBold.woff
+│   │   └── Inter-SemiBold.woff2
+│   ├── hello.json
+│   ├── img
+│   │   ├── BrucheionLogo.png
+│   │   ├── CollectionImg.svg
+│   │   ├── favicon.png
+│   │   ├── lamp.svg
+│   │   ├── logo-flat.png
+│   │   ├── nlogo.svg
+│   │   ├── orientation-landscape.svg
+│   │   ├── orientation-portrait.svg
+│   │   ├── SinapisLogo.png
+│   │   ├── text-lg.svg
+│   │   ├── text-md.svg
+│   │   └── text-sm.svg
+│   ├── js
+│   │   ├── app.js
+│   │   ├── auth_cup_of_tea.js
+│   │   ├── aws-sdk-2.1318.0.min.js
+│   │   ├── bootstrap.min.js
+│   │   ├── bootstrap.min.js.map
+│   │   ├── BrIC.js
+│   │   ├── d3.js
+│   │   ├── d3.min.js
+│   │   ├── dragging.js
+│   │   ├── dragging.min.js
+│   │   ├── FileSaver.js
+│   │   ├── ict2.js
+│   │   ├── ict2.min.js
+│   │   ├── jquery-3.2.1.min.js
+│   │   ├── jquery-3.2.1.min.map
+│   │   ├── keyboards
+│   │   │   ├── greekBeta.js
+│   │   │   ├── none.js
+│   │   │   └── sansKey.js
+│   │   ├── resizer.js
+│   │   ├── selection.js
+│   │   ├── selectionoverlay.js
+│   │   ├── selectionrect.js
+│   │   └── typeahead.bundle.js
+│   └── static
+│       ├── css
+│       │   ├── application.css
+│       │   ├── application.min.css
+│       │   ├── bootstrap-theme.css.map
+│       │   ├── bootstrap-theme.min.css
+│       │   ├── bootstrap-theme.min.css.map
+│       │   ├── bootstrap.css.map
+│       │   ├── bootstrap.min.css
+│       │   ├── bootstrap.min.css.map
+│       │   ├── brulma.css
+│       │   ├── brulma2.css
+│       │   ├── bulma.css
+│       │   ├── bulma.css.map
+│       │   ├── bulma.min.css
+│       │   ├── font-awesome.css
+│       │   ├── font-awesome.min.css
+│       │   ├── images
+│       │   │   ├── button_grouphover.png
+│       │   │   ├── button_hover.png
+│       │   │   ├── button_pressed.png
+│       │   │   ├── button_rest.png
+│       │   │   ├── fullpage_grouphover.png
+│       │   │   ├── fullpage_hover.png
+│       │   │   ├── fullpage_pressed.png
+│       │   │   ├── fullpage_rest.png
+│       │   │   ├── guidehorizontal_grouphover.png
+│       │   │   ├── guidehorizontal_hover.png
+│       │   │   ├── guidehorizontal_pressed.png
+│       │   │   ├── guidehorizontal_rest.png
+│       │   │   ├── guidevertical_grouphover.png
+│       │   │   ├── guidevertical_hover.png
+│       │   │   ├── guidevertical_pressed.png
+│       │   │   ├── guidevertical_rest.png
+│       │   │   ├── home_grouphover.png
+│       │   │   ├── home_hover.png
+│       │   │   ├── home_pressed.png
+│       │   │   ├── home_rest.png
+│       │   │   ├── next_grouphover.png
+│       │   │   ├── next_hover.png
+│       │   │   ├── next_pressed.png
+│       │   │   ├── next_rest.png
+│       │   │   ├── previous_grouphover.png
+│       │   │   ├── previous_hover.png
+│       │   │   ├── previous_pressed.png
+│       │   │   ├── previous_rest.png
+│       │   │   ├── rotateleft_grouphover.png
+│       │   │   ├── rotateleft_hover.png
+│       │   │   ├── rotateleft_pressed.png
+│       │   │   ├── rotateleft_rest.png
+│       │   │   ├── rotateright_grouphover.png
+│       │   │   ├── rotateright_hover.png
+│       │   │   ├── rotateright_pressed.png
+│       │   │   ├── rotateright_rest.png
+│       │   │   ├── selection_cancel_grouphover.png
+│       │   │   ├── selection_cancel_hover.png
+│       │   │   ├── selection_cancel_pressed.png
+│       │   │   ├── selection_cancel_rest.png
+│       │   │   ├── selection_confirm_grouphover.png
+│       │   │   ├── selection_confirm_hover.png
+│       │   │   ├── selection_confirm_pressed.png
+│       │   │   ├── selection_confirm_rest.png
+│       │   │   ├── selection_grouphover.png
+│       │   │   ├── selection_hover.png
+│       │   │   ├── selection_pressed.png
+│       │   │   ├── selection_rest.png
+│       │   │   ├── zoomin_grouphover.png
+│       │   │   ├── zoomin_hover.png
+│       │   │   ├── zoomin_pressed.png
+│       │   │   ├── zoomin_rest.png
+│       │   │   ├── zoomout_grouphover.png
+│       │   │   ├── zoomout_hover.png
+│       │   │   ├── zoomout_pressed.png
+│       │   │   └── zoomout_rest.png
+│       │   ├── navigation.css
+│       │   ├── style.css
+│       │   └── view.css
+│       ├── data
+│       │   └── tree.json
+│       ├── fonts
+│       │   ├── fontawesome-webfont.eot
+│       │   ├── fontawesome-webfont.svg
+│       │   ├── fontawesome-webfont.ttf
+│       │   ├── fontawesome-webfont.woff
+│       │   ├── fontawesome-webfont.woff2
+│       │   ├── FontAwesome.otf
+│       │   ├── ibm-plex-mono-v5-latin-500.woff
+│       │   ├── ibm-plex-mono-v5-latin-500.woff2
+│       │   ├── Inter-Regular.woff
+│       │   ├── Inter-Regular.woff2
+│       │   ├── Inter-SemiBold.woff
+│       │   └── Inter-SemiBold.woff2
+│       ├── img
+│       │   ├── BrucheionLogo.png
+│       │   ├── favicon.png
+│       │   ├── logo-flat.png
+│       │   ├── orientation-landscape.svg
+│       │   ├── orientation-portrait.svg
+│       │   ├── SinapisLogo.png
+│       │   ├── text-lg.svg
+│       │   ├── text-md.svg
+│       │   └── text-sm.svg
+│       ├── less
+│       │   ├── animated.less
+│       │   ├── bordered-pulled.less
+│       │   ├── core.less
+│       │   ├── fixed-width.less
+│       │   ├── font-awesome.less
+│       │   ├── icons.less
+│       │   ├── larger.less
+│       │   ├── list.less
+│       │   ├── mixins.less
+│       │   ├── path.less
+│       │   ├── rotated-flipped.less
+│       │   ├── screen-reader.less
+│       │   ├── stacked.less
+│       │   └── variables.less
+│       └── scss
+│           ├── _animated.scss
+│           ├── _bordered-pulled.scss
+│           ├── _core.scss
+│           ├── _fixed-width.scss
+│           ├── _icons.scss
+│           ├── _larger.scss
+│           ├── _list.scss
+│           ├── _mixins.scss
+│           ├── _path.scss
+│           ├── _rotated-flipped.scss
+│           ├── _screen-reader.scss
+│           ├── _stacked.scss
+│           ├── _variables.scss
+│           ├── font-awesome.scss
+│           └── navigation.css
+├── go.mod
+├── go.sum
+├── gocite
+│   └── gocite.go
+├── handlers
+│   ├── admin
+│   │   ├── admin_handler.go
+│   │   ├── groups_handler.go
+│   │   ├── routes_handler.go
+│   │   └── users_handler.go
+│   ├── api
+│   │   ├── addcol_handler.go
+│   │   ├── cexupload_handler.go
+│   │   ├── collection_drop.go
+│   │   ├── collection_share.go
+│   │   ├── collection.go
+│   │   ├── collections_handler.go
+│   │   ├── images_handler.go
+│   │   ├── ingestimage.go
+│   │   ├── main_handler.go
+│   │   ├── passage_edit.go
+│   │   ├── passage_handler.go
+│   │   ├── user_handler.go
+│   │   └── users_handler.go
+│   └── root
+│       ├── addcol_handler.go
+│       ├── collectionbulkedit_handler.go
+│       ├── collectionedit
+│       │   ├── collectionedit_editreferences.go
+│       │   ├── collectionedit.go
+│       │   └── helpers.go
+│       ├── collectionoverview_handler .go
+│       ├── collections_handler.go
+│       ├── ingestcex_handler.go
+│       ├── ingestimage_handler.go
+│       ├── menu_handler.go
+│       └── sharecollection_handler.go
+├── LICENSE
+├── main.go
+├── Makefile
+├── models
+│   ├── api.go
+│   ├── author.go
+│   ├── boltdata.go
+│   ├── cite.go
+│   ├── collection.go
+│   ├── credentials.go
+│   ├── groups.go
+│   ├── image.go
+│   ├── passage.go
+│   ├── repo
+│   │   ├── sql_api_users.go
+│   │   ├── sql_auth_methods.go
+│   │   ├── sql_boltdata_load.go
+│   │   ├── sql_boltdata_save.go
+│   │   ├── sql_catalog_save.go
+│   │   ├── sql_collection_page.go
+│   │   ├── sql_collection_save_old.go
+│   │   ├── sql_helper.go
+│   │   ├── sql_imagedata.go
+│   │   ├── sql_loader.go
+│   │   ├── sql_passage_edit.go
+│   │   ├── sql_passage_methods.go
+│   │   ├── sql_repo.go
+│   │   ├── sql_scan.go
+│   │   └── sql_service.go
+│   ├── repository.go
+│   ├── transcription.go
+│   └── user.go
+├── package.json
+├── Procfile
+├── README.md
+├── scripts
+│   ├── postdeploy.sh
+│   ├── prepare-providers.sh
+│   └── release.sh
+├── sql
+│   ├── migrations
+│   │   ├── 000001_create_users_table.down.sql
+│   │   ├── 000001_create_users_table.up.sql
+│   │   ├── 000002_create_citedata_table.down.sql
+│   │   ├── 000002_create_citedata_table.up.sql
+│   │   ├── 000003_seed_users.down.sql
+│   │   ├── 000003_seed_users.up.sql
+│   │   ├── 000004_create_userrights_table.down.sql
+│   │   ├── 000004_create_userrights_table.up.sql
+│   │   ├── 000005_create_checkuserrights_fn.down.sql
+│   │   ├── 000005_create_checkuserrights_fn.up.sql
+│   │   ├── 000006_create_imagedata_table.down.sql
+│   │   ├── 000006_create_imagedata_table.up.sql
+│   │   ├── 000007_create_imagedata_table.down.sql
+│   │   └── 000007_create_imagedata_table.up.sql
+│   ├── pg_del_collection.sql
+│   ├── pg_del_collectionsuser.sql
+│   ├── pg_del_collectionusers.sql
+│   ├── pg_del_usergroups.sql
+│   ├── pg_ins_bucket.sql
+│   ├── pg_ins_collection.sql
+│   ├── pg_ins_colusers.sql
+│   ├── pg_ins_user.sql
+│   ├── pg_ins_usergroups.sql
+│   ├── pg_sel_author_page_count.sql
+│   ├── pg_sel_author_page.sql
+│   ├── pg_sel_boltcatalog.sql
+│   ├── pg_sel_collection.sql
+│   ├── pg_sel_collectionbucketdict.sql
+│   ├── pg_sel_collectionbucketkeys.sql
+│   ├── pg_sel_collectionbucketkeyvalue.sql
+│   ├── pg_sel_collectionbuckets.sql
+│   ├── pg_sel_collectionimagedict.sql
+│   ├── pg_sel_collectionimagekeyvalue.sql
+│   ├── pg_sel_collections_page_count.sql
+│   ├── pg_sel_collectionspage.sql
+│   ├── pg_sel_colusers.sql
+│   ├── pg_sel_credentials.sql
+│   ├── pg_sel_groupbyid.sql
+│   ├── pg_sel_groupbyname.sql
+│   ├── pg_sel_groups.sql
+│   ├── pg_sel_imagecollectionlist.sql
+│   ├── pg_sel_iscollectionwriteble.sql
+│   ├── pg_sel_passage.sql
+│   ├── pg_sel_userbucket.sql
+│   ├── pg_sel_userbyemail.sql
+│   ├── pg_sel_userbyid.sql
+│   ├── pg_sel_userbyname.sql
+│   ├── pg_sel_userbyvcode.sql
+│   ├── pg_sel_usergroups.sql
+│   ├── pg_sel_users.sql
+│   ├── pg_upd_citedata_dict.sql
+│   ├── pg_upd_collection.sql
+│   ├── pg_upd_group.sql
+│   ├── pg_upd_imagedata_dict.sql
+│   └── pg_upd_user.sql
+├── templates
+│   ├── account.html
+│   ├── admin_database.html
+│   ├── admin_groups.html
+│   ├── admin_routes.html
+│   ├── admin_select_group.html
+│   ├── admin_users.html
+│   ├── admin.html
+│   ├── auth_create.html
+│   ├── auth_forgot_pwd.html
+│   ├── auth_layout.html
+│   ├── auth_resetpwd.html
+│   ├── auth_sign.html
+│   ├── br_footer.html
+│   ├── email
+│   │   ├── base.html
+│   │   ├── styles.html
+│   │   └── verificationCode.html
+│   ├── root_collections.html
+│   ├── root_editcatalog.html
+│   ├── root_editreferences.html
+│   ├── root_edittranscription.html
+│   ├── root_layout.html
+│   ├── root_menu.html
+│   ├── root_navigation.html
+│   ├── root_svelte.html
+│   ├── stylesheets.html
+│   └── user_widget.html
+└── utils
+    ├── checknil.go
+    ├── email.go
+    ├── encode.go
+    ├── getS3collection.go
+    ├── gobDecode.go
+    ├── handlers_helper.go
+    ├── initproc.go
+    ├── mustgenerateurl.go
+    ├── random.go
+    ├── slice_manipulating.go
+    └── token.go
+
+

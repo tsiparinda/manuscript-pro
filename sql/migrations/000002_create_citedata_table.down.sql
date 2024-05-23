@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS citedata;
+DROP TABLE IF EXISTS collections;

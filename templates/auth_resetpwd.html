@@ -1,0 +1,111 @@
+{{ layout "auth_layout.html" }}
+
+
+
+{{ $context := . }}
+<script>
+function validateForm() {  
+	    //collect form data in JavaScript variables  
+	    var pw1 = document.getElementById("pswd1").value;  
+	    var pw2 = document.getElementById("pswd2").value;  
+
+
+		//check empty password field  
+if(pw1 == "") {  
+  document.getElementById("message").innerHTML = "Fill the password please!";  
+  return false;  
+}  
+
+//check empty confirm password field  
+if(pw2 == "") {  
+  document.getElementById("message").innerHTML = "Retype the password please!";  
+return false;
+}
+ 
+//minimum password length validation  
+if(pw1.length < 8) {  
+   document.getElementById("message").innerHTML = "Password length must be atleast 8 characters";  
+//   alert("Password length must be atleast 8 characters");
+  return false;  
+}  
+
+//maximum length of password validation  
+if(pw1.length > 15) {  
+  document.getElementById("message").innerHTML = "Password length must not exceed 15 characters";  
+//   alert("Password length must not exceed 15 characters");  
+  return false;  
+}  
+
+	if(pw1 != pw2)
+	{
+		document.getElementById("message").innerHTML = "Passwords did not match";  
+		return false;
+	}else{
+		alert("Password created successfully");
+		return true;
+	}
+}
+</script>
+<!-- partial:index.partial.html -->
+<main ontouchstart class="with-hover">
+
+	<aside>
+		<div></div>
+		<img src="/files/img/nlogo.svg"></img>
+	</aside>
+	<section>
+		<h1>
+            <a id="link-signup" class="active">Reset account</a>
+		</h1>
+        <form id="form-signup" method="POST" class="active" onsubmit="return validateForm()" action="/resetpwd">
+			<div>
+				<fieldset>
+					<div>
+						<label for="name">Name</label>
+						<input id="name" name="username" type="text" value= "{{ .Username }}" disabled/>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<div>
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" value="{{ .Email }}" disabled/>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div>
+						<label for="password">Password</label>
+						<input id="pswd1" class="form-control" name="password" type="password" placeholder="••••••••" title="type 8-15 symbols" required/>
+						<!-- <span id = "message1" style="color:red"> </span>  -->
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<div>
+						<label for="password">Retype</label>
+						<input id="pswd2" class="form-control" name="pass2" type="password" placeholder="••••••••" title="repeet please" required/>
+						<!-- <span id = "message2" style="color:red"> </span>  -->
+					</div>
+				</fieldset>	
+					
+			</div>
+			<div>
+		</div>
+		<div>
+			<h4 style="text-align:center">
+				<a  class="active">Please create new password for your account</a>
+				<span id = "message" style="color:red"> </span> 
+			</h4>
+		</div>
+			<input type="submit" name="formtype" value="Create"  />
+			<div>
+				 {{ if ne .Message "" }}
+					<h3 id = "message_main"  style="text-align: center; color: red;" >{{ .Message }}</h3>
+				{{ end }}
+			</div>
+
+		</form>
+	</section>
+</main>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="/files/js/auth_cup_of_tea.js"></script>

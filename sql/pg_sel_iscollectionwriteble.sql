@@ -1,0 +1,1 @@
+select iscollectionwriteble (($1), ($2));

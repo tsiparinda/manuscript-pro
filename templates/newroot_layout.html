@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brucheion</title>
+    <link rel="icon" type="image/png" href="/files/img/favicon.png">
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;450;500' rel='stylesheet'>
+    <link href="/files/css/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
+    <script src="/files/js/util.js"></script>
+
+</head>
+<body>
+<div class="flex flex-col min-h-screen">
+    <!-- Top Bar -->
+    <div class="bg-bblue-500 text-white py-3 px-6">
+        <div class="flex">
+            <a href="/">
+                <img src="/files/img/nlogo.svg" alt="Brucheion">
+            </a>
+        </div>
+    </div>
+
+
+    <div class="py-2 px-6 text-xl">
+        <span class="text-bblue-500">Brucheion</span>
+        <span>is a virtual Research Environment to create Linked Open Data for historical languages and the research of historical objects.</span>
+    </div>
+    <!-- Content -->
+    {{ body }}
+
+    <!-- Bottom Bar -->
+    <div class="text-black py-1 px-6 text-sm">
+        <div class="flex justify-between">
+            <a href="#" class="mr-4">About</a>
+            <a href="#" class="mr-4">Contact</a>
+            <a href="#" class="mr-4 text-gray-500">Brucheion is a Virtual Research Environment to create Linked Open
+                Data for historical languages and the research of historical objects.</a>
+            <a href="#" class="ml-auto mr-0">Help</a>
+            <a href="#" class="ml-4">v0.1.0</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

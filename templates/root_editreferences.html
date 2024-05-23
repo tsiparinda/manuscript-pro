@@ -1,0 +1,134 @@
+{{ layout "root_layout.html" }}
+
+{{ $context := . }}
+
+{{ template "root_navigation.html" $context }}
+
+<div class="container is-fluid">
+	<section>
+		<div class="tile is-ancestor">
+			<div class="tile is-parent">
+				<div class="tile is-child is-12">
+					<div class="column is-12 has-text-right">
+						<a class="button is-small is-danger" href="/view/{{.ColID}}/home/">CANCEL</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tile is-ancestor">
+			<div class="tile is-parent">
+				<div class="tile is-vertical">
+					<div class="tile is-child">
+						<button class="button is-small is-primary" id="image_changeUrn">Change Image</button>
+						<div class="form-group">
+							<label for="sel1">Select Collection:</label>
+							<select class="form-control" id="image_colSelect" onchange="refreshURL()">
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="sel1">Select Image:</label>
+							<select class="form-control" id="image_urnSelect">
+							</select>
+						</div>
+						<ul id="image_urnList"></ul>
+						<div class="tile is-child box tile-resizable" style="height: 500px;">
+							<div id="image_imageContainer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tile is-parent">
+				<div class="tile is-vertical is-8">
+					<div class="tile is-child">
+						<form method="post" action="/api/v2/savereference/">
+							<p class="subtitle">ImageRef
+							<div>
+								<a class="button is-primary" href="#" onclick="handleSubmit();">Submit</a>
+								<a id="deletearea" class="button is-danger" href="#"
+									onclick="function deleteLink(){document.getElementById('imageTextArea').value = '';}; deleteLink(); return false;">Clear</a>
+							</div>
+							</p>
+							<p>
+								<textarea id="imageTextArea" name="text" rows="4" ,
+									cols="60">{{.ImageRef}}</textarea>
+							</p>
+							<input type="hidden" class="form-control" id="colid" name="colid" value="{{.ColID}}" >
+							<input type="hidden" class="form-control" id="ctsurn" name="ctsurn" value="{{.Title}}" >
+						</form>
+					</div>
+					<div class="tile is-child box is-12 tile-resizable">
+						<p>{{printf "%s" .Text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+<input type="hidden" id="initialCITE" value="{{.ImageJS}}" readonly>
+
+<script>
+	let dropdown2 = $('#image_colSelect');
+
+	dropdown2.empty();
+
+	dropdown2.append('<option selected="true" disabled>Choose collection</option>');
+	dropdown2.prop('selectedIndex', 0);
+
+	const collectionurl = '/requestImgCollection';
+
+	// Populate dropdown with list of provinces
+	$.getJSON(collectionurl, function (data) {
+		$.each(data.item, function (key, entry) {
+			dropdown2.append($('<option></option>').attr('value', entry).text(entry));
+		})
+	});
+</script>
+
+<script>
+	var imageurl = "/requestImgID/morgantina";
+
+	function refreshURL() {
+		imageurl = '/requestImgID/' + $('#image_colSelect').val();
+		let dropdown = $('#image_urnSelect');
+
+		dropdown.empty();
+
+		dropdown.append('<option selected="true" disabled>Choose folio</option>');
+		dropdown.prop('selectedIndex', 0);
+
+		// Populate dropdown with list of provinces
+		$.getJSON(imageurl, function (data) {
+			$.each(data.item, function (key, entry) {
+				dropdown.append($('<option></option>').attr('value', entry).text(entry));
+			})
+		});
+	}
+</script>
+<script>
+	async function manualPost() {
+		const imageArea = document.getElementById('imageTextArea').value.replaceAll("#", "+");
+		const actualPost = "/api/v2/savereference/" + imageArea;
+		await fetch(actualPost);
+		window.location = "/view/{{.ColID}}/home/";
+	}
+	async function handleSubmit() {
+        var id = document.getElementById('colid').value;
+		var ctsurn = document.getElementById('ctsurn').value;
+		const imageref = document.getElementById('imageTextArea').value.replaceAll("#", "+");
+        let data = { colid: parseInt(id), ctsurn: ctsurn, imageref: [imageref] }
+        // console.log(data)
+
+        fetch('/api/v2/savereference', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        }).then((res) => {
+            // console.log('Request complete! response:', res)
+            location.reload(true)
+        }).catch((err) => {
+            console.log('Error:', err)
+        })
+    }
+</script>
+<script type="text/javascript" src="/files/js/BrIC.js"></script>

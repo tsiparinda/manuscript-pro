@@ -1,0 +1,192 @@
+{{ layout "root_layout.html" }}
+
+<link rel="stylesheet" href="/files/app/dist/bundle.css"/>
+<link rel="stylesheet" href="/files/css/collections.css"/>
+<div id="app"></div>
+<script src="/files/app/dist/bundle.js"></script>
+
+{{ $context := . }}
+<!-- {{ .Page }}
+    {{ .SelectedAuthor }} -->
+
+{{ if $context.User.IsAuthenticated }}
+<div class="px-2">
+    <div class="container-fluid">
+        <div class="row pb-2">
+            <div class="col-10" id="br-head">Collections</div>
+            <div class="col-2 d-flex justify-content-end">
+                <form class="form-inline" method="GET" action="/tools/addcollection">
+                    <button class="btn my-2 my-sm-0 bg-br-primary text-white rounded-pill" type="submit"
+                            style="background-color: #14b34e !important;; margin-right: 10px;">
+                        New collection
+                    </button>
+                </form>
+                <form class="form-inline" method="GET" action="/tools/ingestcex">
+                    <button class="btn my-2 my-sm-0 bg-br-primary text-white rounded-pill" type="submit">
+                        Import collection
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+<div>
+    {{ if not $context.User.IsAuthenticated }}
+
+    <div class="px-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8" id="br-head"><span class="text-br-primary font-w6">Brucheion</span> is a Virtual
+                    Enviroment (VRE) to create Linked Open Data (LOD) for historical languages and the research of
+                    historical objects
+                </div>
+                <div class="col-4">
+                    <img src="/files/img/lamp.svg" width="80"  height="100" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{ end }}
+
+    {{ range $context.Collections }}
+
+
+    <div class="container-fluid border rounded">
+        <div class="row">
+
+            <div class="col-6 pt-2 pb-2">
+                <div class="card border-0">
+                    <div id="card-horizontal">
+                        <div>
+                            <img src="/files/img/CollectionImg.svg" class="img-thumbnail" alt="Profile">
+                        </div>
+                        <div>
+                            <div class="container-fluid">
+
+                                <div class="row align-items-center">
+                                    {{if .Collection.IsPublic}}
+                                    <a class="tag tag-public mb-2" id="tag-text">PUBLIC</a>
+                                    {{else}}
+                                    <a class="tag tag-private mb-2" id="tag-text">PRIVATE</a>
+                                    {{end}}
+                                    <div class="col">
+                                        <a class="card-title" id="br-head" href="{{ .CollectionURL }}">{{
+                                            .Collection.Title }}</a>
+                                        <!-- </div>
+                                        <div class="col"> -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <span class="editor">Owner: &nbsp;</span>
+                                    <a class="mb-2 editor editor-name" href="{{ .Author.AuthorURL }}">{{ .Author.Name
+                                        }}</a>
+                                </div>
+                                <div class="row">
+                                    <p class="desc card-text"></p>
+                                    {{ .SampleText }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 pt-3 pb-4 d-flex justify-content-end align-items-center">
+                {{if .CanEditCollection }}
+                <a class="btn btn_ingestimages my-2 my-sm-0 mx-2"
+                   href="/tools/ingestimage/{{.Collection.Id}}">
+                    <i class="fa fa-image fa-lg"></i>
+                    Ingest Images
+                </a>
+
+                <a class="btn btn_bulkedit my-2 my-sm-0"
+                   href="/tools/bulkedit/{{.Collection.Id}}">
+                    <i class="fa fa-pencil fa-lg"></i>
+                    Bulk Edit
+                </a>
+                {{end}}
+                {{if .CanSharingCollection }}
+                <a class="btn btn_share  my-2 my-sm-0" href="/tools/sharecollection/{{.Collection.Id}}">
+                    <i class="fa fa-share-alt fa-lg"></i>
+                    Share
+                </a>
+                <!-- <a class="btn  my-sm-0 text-white rounded-pill" href="/tools/sharecollection/{{.Collection.Id}}"
+                style="background-color: #E09A41; color: #ffffff;">
+                    <strong>Share</strong>
+                </a> -->
+                {{end}}
+                {{if .CanDropCollection }}
+                <a class="btn btn_delete  my-2 my-sm-0" data-toggle="modal" href="/"
+                   data-target="#exampleModal" data-url="{{.DropCollectionURL}}" data-id="{{.Collection.Id}}"
+                   data-name="{{.Collection.Title}}">
+                    <i class="fa fa-trash-o fa-lg"></i>
+                    Delete
+                </a>
+                <!-- <a class="btn_delete btn btn-danger my-2 my-sm-0 text-white rounded-pill" data-toggle="modal"
+                data-target="#exampleModal" data-url="{{.DropCollectionURL}}" data-id="{{.Collection.Id}}"
+                data-name="{{.Collection.Title}}"
+                style="background-color: #D85653; color: #ffffff;">
+                <strong>Delete</strong>
+            </a> -->
+                {{end}}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete collection?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="colid">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="del" class="btn btn-danger" onclick="handleSubmit()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var url = button.data('url')
+        var id = button.data('id')
+        var name = button.data('name')
+
+        $("#form1").attr("action", url);
+        var modal = $(this)
+        modal.find('.modal-title').text('Delete collection ' + name + ' ?')
+        modal.find('#colid').val(id)
+    })
+
+    function handleSubmit() {
+        var id = document.getElementById('colid').value;
+        let data = {colid: parseInt(id)}
+        // console.log(data)
+
+        fetch('/api/v2/dropcollection', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+        }).then((res) => {
+            // console.log('Request complete! response:', res)
+            $('#exampleModal').modal("hide")
+            location.reload(true)
+        }).catch((err) => {
+            console.log('Error:', err)
+        })
+    }
+</script>

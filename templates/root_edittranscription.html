@@ -1,0 +1,128 @@
+{{ layout "root_layout.html" }}
+
+{{ $context := . }}
+
+
+{{ template "root_navigation.html" $context }}
+
+	<div class="container is-fluid">
+		<section>
+			<div class="tile is-ancestor">
+				<div class="tile is-parent">
+					<div class="tile is-child box is-6">
+						<input id="image_urnBox" type="text" size="60" value="" /> <button
+							class="button is-small is-primary" id="image_changeUrn">Change
+							Image
+						</button>
+					</div>
+					<div class="tile is-child box is-5">
+						<p>ImageRef: {{.ImageHTML}}</p>
+					</div>
+					<div class="tile is-child is-1">
+						<div class="column is-12 has-text-right">
+							<a class="button is-small is-danger" href="/view/{{.ColID}}/home/">CANCEL</a>
+                            <a class="button is-small" href="/edit/{{.Title}}/pt">PORTRAIT</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tile is-ancestor">
+				<div class="tile is-parent is-vertical">
+					<div class="tile is-child box tile-resizable is-12">
+						<div class="box" style="height: 500px;">
+							<div id="image_imageContainer"></div>
+						</div>
+					</div>
+					<form action="/api/v2/savetranscription/" method="POST">
+						<div><input class="button is-primary" type="submit" value="Save"></div>
+						<div class="tile is-child box tile-resizable is-12">
+							<p class="subtitle">Transcription</p>
+							<div>
+								<div class="tile is-child columns">
+									<div class="column">
+										<button type="button" onclick="makeXSmall()"><span
+												style="font-size: x-small">Aa</span></button>
+										<button type="button" onclick="makeSmall()"><span
+												style="font-size: small">Aa</span></button>
+										<button type="button" onclick="makeMedium()"><span
+												style="font-size: medium">Aa</span></button>
+										<button type="button" onclick="makeBig()"><span
+												style="font-size: large">Aa</span></button>
+										<button type="button" onclick="makeXBig()"><span
+												style="font-size: x-large">Aa</span></button>
+									</div>
+									<div class="column">
+										<select lang="en" onchange="loadJS(this.value)">
+											<option selected="selected" disabled="true"> Select a keyboard language
+											</option>
+											<option value="sansKey">sansKey</option>
+											<option value="greekBeta">greekBeta</option>
+											<option value="none">none</option>
+										</select>
+									</div>
+								</div>
+								<input type="hidden" class="form-control" name="colid" value="{{.ColID}}" >
+								<input type="hidden" class="form-control" name="ctsurn" value="{{.Title}}" >
+								<div><textarea class="specialKey" name="transcription" rows="15" ,
+										cols="120">{{printf "%s" .Text}}</textarea></div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<input type="hidden" id="initialCITE" value="{{.ImageJS}}" readonly>
+	<script type="text/javascript" src="/files/js/BrIC.js"></script>
+	<script type="text/javascript">
+		var letterMap,
+			keys,
+			values,
+			firstLetter,
+			secondLetter;
+
+		function loadJS(v) {
+			var d = document, h = d.getElementsByTagName('head')[0], newScript;
+			try { h.removeChild(d.getElementById('keylang')); } catch (e) { }
+			newScript = d.createElement('script');
+			newScript.id = 'keylang';
+			newScript.type = 'text/javascript';
+			newScript.src = '/js/keyboards/' + v + '.js';
+			h.appendChild(newScript);
+		}
+	</script>
+	<script>
+		function makeXBig() {
+			var x = document.getElementsByName("text");
+			for (var i = 0; i < x.length; i++) {
+				x[i].style.fontSize = "x-large";
+			};
+		};
+		function makeBig() {
+			var x = document.getElementsByName("text");
+			for (var i = 0; i < x.length; i++) {
+				x[i].style.fontSize = "large";
+			};
+		};
+		function makeMedium() {
+			var x = document.getElementsByName("text");
+			for (var i = 0; i < x.length; i++) {
+				x[i].style.fontSize = "medium";
+			}
+		};
+		function makeXSmall() {
+			var x = document.getElementsByName("text");
+			for (var i = 0; i < x.length; i++) {
+				x[i].style.fontSize = "x-small";
+			}
+		};
+		function makeSmall() {
+			var x = document.getElementsByName("text");
+			for (var i = 0; i < x.length; i++) {
+				x[i].style.fontSize = "small";
+			}
+		};
+	</script>
+

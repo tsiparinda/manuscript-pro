@@ -1,0 +1,26 @@
+{{ layout "newroot_layout.html" }}
+
+<div class="w-full flex-1 flex">
+    <div class="bg-gray-100 w-full flex-1 px-6 flex justify-center items-center">
+        <div class="overflow-hidden shadow-lg bg-white rounded-xl text-black w-1/2 min-w-700 flex">
+            <div class="bg-bblue-500 w-1/2 flex">
+                <img class="p-8" src="/files/img/nlogo.svg">
+            </div>
+            <div class="w-1/2 min-h-500 flex flex-col">
+                <div class="flex text-2xl text-bblue-500 font-black">
+                    <a href="{{ .SignInUrl }}" class="p-4 text-gray-600 font-light hover:text-bblue-500 hover:font-black" >Sign in</a>
+                    <a class="py-4 text-gray-600 font-light">|</a>
+                    <a href="{{ .SignUpUrl }}" class="p-4 text-gray-600 font-light hover:text-bblue-500 hover:font-black">Sign up</a>
+                </div>
+                <div class="flex-1 flex flex-col items-center">
+                    <div class="px-4 py-4 text-l"> Please enter your email, to reset  the password</div>
+                    <div class="w-full">
+                        <div hx-post="" hx-swap="outerHTML" hx-trigger="load">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

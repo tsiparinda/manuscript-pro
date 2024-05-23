@@ -1,0 +1,52 @@
+{{ layout "auth_layout.html" }}
+
+
+
+{{ $context := . }}
+<!-- partial:index.partial.html -->
+<main ontouchstart class="with-hover">
+	<aside>
+		<div></div>
+		<img src="/files/img/nlogo.svg"></img>
+	</aside>
+	<section>
+		<h1>
+            <a id="link-signup" class="active">Create account</a>
+		</h1>
+        <form id="form-signup" method="POST" class="active" action="/signupverification">
+			<div>
+				<fieldset>
+					<div>
+						<label for="name">Name</label>
+						<input id="name" name="username" type="text" value= "{{ .Username }}" placeholder="Martin Gluckman"/>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div>
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" value="{{ .Email }}" disabled/>
+					</div>
+				</fieldset>
+			</div>
+			<div>
+			<h3 style="text-align:center">
+				<a class="active">Almost there!</a>
+			</h3>
+		</div>
+		<div>
+			<h4 style="text-align:center">
+				<a  class="active">Finish creating your account</a>
+			</h4>
+		</div>
+			<input type="submit" name="formtype" value="Create"/>
+			<div>
+				{{ if ne .Message "" }}
+					<h3  style="text-align: center; color: red;" >{{ .Message }}</h3>
+				{{ end }}
+			</div>
+
+		</form>
+	</section>
+</main>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="/files/js/auth_cup_of_tea.js"></script>

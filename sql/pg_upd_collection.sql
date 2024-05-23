@@ -1,0 +1,1 @@
+UPDATE collections SET title=($3), is_public=($4)  where id=($1) and id_author=($2);
