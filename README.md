@@ -1,8 +1,7 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vedicsociety/brucheion-pro/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vedicsociety/Manuscript-pro/tree/master)
 
-<img src="files/static/img/logo-flat.png" alt="" width="500">
 
-# Brucheion, the Virtual Research Environment
+# Manuscript, the Virtual Research Environment
 
 Brucheion is a Virtual Research Environment (VRE) to create Linked Open Data (LOD) for historical languages and the research of historical objects in multiuser environment. This project is a combination of Go (Golang) and Svelte, two powerful technologies for building high-performance, scalable web applications. Golang handles the backend, offering its characteristic speed and efficiency, while Svelte is used on the frontend for its ability to compile your code to efficient, imperative code that directly manipulates the DOM. All transcript data stored in Postgres DB.
 
